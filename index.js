@@ -1,18 +1,31 @@
 (() => {
-	
-	const currentVideoTime = document.querySelector('.ytp-time-current');
+	const videoPlayer = document.querySelector('video');
 
-	const config = {
-		characterData: true,
+	const ATTRIBUTE_NAME = 'loop';
+
+	const OBSERVER_CONFIG = {
+		characterData: false,
+		attributes: true,
 		childList: true,
 	};
 
-	const log = (mutationsList, observer) => {
-		console.log('log');
-	};
+	function setVideoLoop() {
+		const isLooping = videoPlayer.getAttribute(ATTRIBUTE_NAME)
+			? true
+			: false;
 
-	const durationObserver = new MutationObserver(log);
+		if (!isLooping) {
+			videoPlayer.toggleAttribute(ATTRIBUTE_NAME);
+		}
+	}
 
-	durationObserver.observe(currentVideoTime, config);
+	function simulateLoop(mutations, observer) {
+		console.log('loop attribute changed');
+	}
 
+	const videoLoopObserver = new MutationObserver(simulateLoop);
+
+	videoLoopObserver.observe(videoPlayer, OBSERVER_CONFIG);
+
+	setVideoLoop();
 })();
