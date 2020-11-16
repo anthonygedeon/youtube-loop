@@ -1,0 +1,30 @@
+{
+    "name": "YouTube Loop",
+    "version": "0.1.0",
+    "manifest_version": 2,
+
+    "description": "Loop YouTube videos without error.",
+
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["*://*.youtube.com/watch*"],
+            "js": ["index.js"]
+        }
+    ],
+
+    "browser_action": {
+        "default_title": "YouTube Loop"
+    },
+
+    "permissions": [
+        "https://*/*",
+        "http://*/*",
+        "activeTabs"
+    ]
+
+}
